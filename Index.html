@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Just One Question ❤️</title>
+<title>Just Us 💖</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 * {
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 body {
   margin: 0;
   height: 100vh;
-  background: linear-gradient(135deg, #ff6a88, #ff99ac);
+  background: #f6f1ef;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,153 +22,267 @@ body {
 }
 
 .card {
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(12px);
-  padding: 35px;
-  border-radius: 20px;
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 18px;
   width: 90%;
-  max-width: 420px;
+  max-width: 480px;
   text-align: center;
-  color: #fff;
-  animation: fadeIn 1.2s ease;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  animation: fadeIn 0.6s ease;
 }
 
 h1 {
-  font-size: 26px;
-  margin-bottom: 10px;
+  font-size: 24px;
+  color: #222;
 }
 
-p {
-  font-size: 16px;
-  margin-bottom: 25px;
-}
-
-input {
-  width: 100%;
-  padding: 14px;
-  border-radius: 10px;
-  border: none;
-  font-size: 15px;
-  margin-bottom: 20px;
-}
-
-button {
-  padding: 12px 20px;
-  border-radius: 10px;
-  border: none;
-  font-size: 15px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.primary {
-  background: #ff2e63;
-  color: white;
-}
-
-.primary:hover {
-  background: #e61e52;
+.sub {
+  font-size: 14px;
+  color: #666;
+  margin: 15px 0 25px;
 }
 
 .buttons {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 20px;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.yes {
-  background: #28c76f;
-  color: white;
+.option {
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  background: #f2f2f2;
+  transition: 0.25s;
 }
 
+.option:hover {
+  background: #eaeaea;
+}
+
+.primary {
+  background: #ff4d6d;
+  color: #fff;
+}
+
+.hidden { display: none; }
+
+img {
+  width: 220px;
+  margin: 15px auto;
+}
+
+/* Valentine neutral buttons */
+.yes,
 .no {
-  background: #ea5455;
-  color: white;
-  position: absolute;
+  padding: 14px;
+  border-radius: 14px;
+  border: 2px solid #ddd;
+  font-size: 14px;
+  cursor: pointer;
+  background: #fff;
+  color: #333;
+  transition: 0.25s ease;
 }
 
-.hidden {
-  display: none;
+.yes:hover {
+  background: #f2f2f2;
+
+}
+
+.no:hover {
+  background: #f2f2f2;
+}
+
+.love-img {
+  width: 220px;
+  margin: 20px auto 10px;
+}
+
+.love-box {
+  margin: 20px 0;
+  font-size: 34px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.love-box span {
+  animation: float 1.2s infinite alternate;
+}
+
+.heart {
+  animation: heartbeat 0.8s infinite;
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+@keyframes float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-6px); }
 }
 
 @keyframes fadeIn {
-  from {opacity: 0; transform: scale(0.9);}
-  to {opacity: 1; transform: scale(1);}
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+  100% { transform: translateX(0); }
+}
+
+.shake { animation: shake 0.4s; }
+
+/* Confetti */
+.confetti {
+  position: fixed;
+  top: -10px;
+  width: 8px;
+  height: 8px;
+  animation: fall 3s linear infinite;
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(360deg); }
 }
 </style>
 </head>
 
 <body>
 
-<div class="card" id="step1">
-  <h1>Hey ❤️</h1>
-  <p>Before anything… tell me your name</p>
-
-  <form id="nameForm">
-    <input type="text" name="name" id="name" placeholder="Your Name" required>
-    <button class="primary">Continue</button>
-  </form>
-</div>
-
-<div class="card hidden" id="step2">
-  <h1 id="nameText"></h1>
-  <p>I have something very important to ask you 💍</p>
-  <button class="primary" onclick="nextStep()">Next</button>
-</div>
-
-<div class="card hidden" id="step3">
-  <h1>Will you marry me? 💖</h1>
+<!-- QUESTIONS (UNCHANGED) -->
+<div class="card" id="q1">
+  <h1>Our perfect getaway would always be… 💭</h1>
   <div class="buttons">
-    <button class="yes" onclick="sayYes()">YES 😍</button>
-    <button class="no" id="noBtn">NO 🙈</button>
+    <button class="option" onclick="next('q1','q2')">🌊 By the sea, hand in hand</button>
+    <button class="option" onclick="wrong('q1')">⛰️ In the mountains, lost in nature</button>
   </div>
 </div>
 
-<div class="card hidden" id="step4">
-  <h1>YAYYYY 🎉💍</h1>
-  <p>You just made me the happiest person alive ❤️</p>
+<div class="card hidden" id="q2">
+  <h1>Which place will always be special to us? 💕</h1>
+  <div class="buttons">
+    <button class="option" onclick="wrong('q2')">🛣️ The road where it all started</button>
+    <button class="option" onclick="next('q2','q3')">🏋️ The gym where we met</button>
+  </div>
+</div>
+
+<div class="card hidden" id="q3">
+  <h1>Do you smile when you see my name on your phone? ✨</h1>
+  <div class="buttons">
+    <button class="option" onclick="next('q3','q4')">Butterflies ❤️</button>
+    <button class="option" onclick="wrong('q3')">No 😐</button>
+  </div>
+</div>
+
+<div class="card hidden" id="q4">
+  <h1>Forever means… 💍</h1>
+  <div class="buttons">
+    <button class="option" onclick="wrong('q4')">Just today</button>
+    <button class="option" onclick="next('q4','questionCard')">Every tomorrow together</button>
+  </div>
+</div>
+
+<div class="card hidden" id="wrongPage">
+  <h1>Oops 😅</h1>
+  <img src="wrong.gif">
+  <div class="sub">Try again 💖</div>
+  <button class="option" onclick="goBack()">Go Back</button>
+</div>
+
+<!-- VALENTINE QUESTION (EXACT MATCH) -->
+<div class="card hidden" id="questionCard">
+  <h1>Sankalp, will you be my Valentine? 💖💞</h1>
+  <div class="sub">Choose wisely. (The "No" button is… shy.)</div>
+
+  <div class="buttons">
+    <button class="yes" onclick="sayYes()">YES</button>
+    <button class="no" id="noBtn">NO</button>
+  </div>
+</div>
+
+<!-- YES PAGE (EXACT MATCH) -->
+<div class="card hidden" id="yesCard">
+  <h1>💖 YAY!!! 💖</h1>
+  <div class="sub">Best decision ever 😘</div>
+
+  <img src="love.gif" class="love-img">
+
+  <div class="love-box">
+    <span>I</span>
+    <span class="heart">❤️</span>
+    <span>YOU</span>
+  </div>
+
+  <div class="sub">Forever & Always 💍✨</div>
 </div>
 
 <script>
-const nameForm = document.getElementById("nameForm");
-const nameInput = document.getElementById("name");
-const nameText = document.getElementById("nameText");
-const noBtn = document.getElementById("noBtn");
+let currentQuestion = null;
 
-nameForm.addEventListener("submit", function(e) {
-  e.preventDefault();
-  document.getElementById("step1").classList.add("hidden");
-  document.getElementById("step2").classList.remove("hidden");
-  nameText.innerText = nameInput.value + " ❤️";
-});
-
-function nextStep() {
-  document.getElementById("step2").classList.add("hidden");
-  document.getElementById("step3").classList.remove("hidden");
+function next(from,to){
+  document.getElementById(from).classList.add("hidden");
+  document.getElementById(to).classList.remove("hidden");
 }
 
-// NO button逃跑 😄
-noBtn.addEventListener("mouseover", () => {
-  const x = Math.random() * (window.innerWidth - 100);
-  const y = Math.random() * (window.innerHeight - 50);
-  noBtn.style.left = x + "px";
-  noBtn.style.top = y + "px";
+function wrong(from){
+  currentQuestion = from;
+  document.getElementById(from).classList.add("hidden");
+  document.getElementById("wrongPage").classList.remove("hidden");
+}
+
+function goBack(){
+  document.getElementById("wrongPage").classList.add("hidden");
+  document.getElementById(currentQuestion).classList.remove("hidden");
+}
+
+/* NO button exact behavior */
+const noBtn = document.getElementById("noBtn");
+let noCount = 0;
+
+noBtn.addEventListener("click", () => {
+  noCount++;
+  noBtn.classList.add("shake");
+  setTimeout(() => noBtn.classList.remove("shake"), 400);
+
+  if (noCount === 1) noBtn.innerText = "Hmm? 😳";
+  if (noCount === 2) noBtn.innerText = "Think again 🙈";
+  if (noCount === 3) noBtn.innerText = "You sure? 😅";
+
+  if (noCount >= 4) {
+    noBtn.style.opacity = "0";
+    noBtn.style.pointerEvents = "none";
+  }
 });
 
-// YES → email + final reveal
-function sayYes() {
-  document.getElementById("step3").classList.add("hidden");
-  document.getElementById("step4").classList.remove("hidden");
+function sayYes(){
+  document.getElementById("questionCard").classList.add("hidden");
+  document.getElementById("yesCard").classList.remove("hidden");
+  startConfetti();
+}
 
-  fetch("YOUR_FORM_ENDPOINT_HERE", {
-    method: "POST",
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      name: nameInput.value,
-      answer: "YES ❤️"
-    })
-  });
+function startConfetti(){
+  for(let i=0;i<40;i++){
+    const c=document.createElement("div");
+    c.className="confetti";
+    c.style.left=Math.random()*100+"vw";
+    c.style.background=["#ff4d6d","#ffd166","#cdb4db","#bde0fe"][Math.floor(Math.random()*4)];
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),3000);
+  }
 }
 </script>
 
